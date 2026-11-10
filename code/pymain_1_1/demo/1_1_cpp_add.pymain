@@ -1,0 +1,22 @@
+use cpp;
+#include <iostream>
+extern "C"{
+long long add(long long a,long long b){
+    std::cout << "cpp: " << a+b << std::endl;
+    return a+b;
+}
+}
+py type(){line 3;
+    return [[cpp.add,['long long','long long'],'long long']]
+}
+py main(){line 11;
+    import os
+    while True:
+        try:
+            input1=int(input())
+            input2=int(input())
+            cpp.add(input1,input2)
+            print("py:",input1+input2)
+        except:
+            pass         
+}

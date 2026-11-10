@@ -1,0 +1,2 @@
+use py;
+print('hello')

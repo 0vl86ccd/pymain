@@ -1,0 +1,13 @@
+use c;
+#include <stdio.h>
+void out1(){
+    printf("Hello world!");
+}
+py type(){line 3;
+    return [[c.out1,"null","null"]]
+}
+py main(){line 5;
+    c.out1()
+    print(version)
+    return 0
+}

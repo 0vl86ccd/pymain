@@ -1,0 +1,22 @@
+use c;
+#include <stdio.h>
+long long add(long long a,long long b){
+    printf("%s","c: ");
+    printf("%lld",a+b);
+    printf("%s","\n");
+    return a+b;
+}
+py type(){line 3;
+    return [[c.add,['long long','long long'],'long long']]
+}
+py main(){line 11;
+    import os
+    while True:
+        try:
+            input1=int(input())
+            input2=int(input())
+            c.add(input1,input2)
+            print("py:",input1+input2)
+        except:
+            pass       
+}
