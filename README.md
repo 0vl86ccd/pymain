@@ -1,4 +1,156 @@
 <details>
+<summary>pymain_1_0说明书</summary>
+
+---
+1.下载：  
+```bash
+git clone https://github.com/huangziling0511/pymain.git
+```
+---
+2.编译
+```bash
+python3 pymain_1_0.py code.pymain code #把code.pymain编译成文件夹code
+```
+---
+3.介绍： 这个语言(1.0)是2026年7月27日(星期一)21:04被发明的，它可以让python调用其他语言的函数更简单。
+
+---
+4.模式： 你可以创建一个.pymain文件，然后你要在文件第一行写use py;/use c++;/use cpp;/use c;来选择模式：  
+
+use c; ---------- python加c语言模式  
+use c++; -------- python加c++模式  
+use cpp; -------- python加c++模式,和上一行一样
+
+---
+5.use c;/use cpp;/use c++; ： python加c/c++模式  
+use c;/use cpp;/use c++;声明不可以和后面的代码挤在一起  
+use c;/use cpp;/use c++;声明后面必须是换行符  
+use c;/use cpp;/use c++;声明后面不可以有空格  
+代码里要有  
+```pymain
+py main(){line n;  
+     #^^^^^^^这几个地方不可以有空格  
+}
+```
+n指的是整个py main()函数占用的行数（包括 **py main(){line n;** 这一行和最后的 **}**）  
+py main()里边就写python了<br><br> 
+代码里要有
+```pymain
+py type(){line n;  
+     #^^^^^^^这几个地方不可以有空格  
+}  
+```
+n指的是整个py type()函数占用的行数（包括 **py type(){line n;** 这一行和最后的 **}**）  
+py type()里边就写c/c++函数的类型了  
+格式： 
+```python
+return [[第一个函数的类型],[第二个函数的类型],[第三个函数的类型]……]
+```
+一个函数的类型格式： 
+```python
+[c/cpp.函数名字,[第一个参数的类型,第二个参数的类型……],结果的类型]或  
+``` 
+类型支持：
+```python
+{'bool':ctypes.c_bool, 'byte':ctypes.c_byte, 'char':ctypes.c_char,
+ 'char_p':ctypes.c_char_p, 'double':ctypes.c_double, 'float':ctypes.c_float, 
+ 'int':ctypes.c_int, 'int16':ctypes.c_int16, 'int32':ctypes.c_int32, 
+ 'int64':ctypes.c_int64, 'int8':ctypes.c_int8, 'long':ctypes.c_long, 
+ 'longdouble':ctypes.c_longdouble, 'longlong':ctypes.c_longlong, 'short':ctypes.c_short,
+ 'size_t':ctypes.c_size_t, 'ssize_t':ctypes.c_ssize_t, 'ubyte':ctypes.c_ubyte, 
+ 'uint':ctypes.c_uint, 'uint16':ctypes.c_uint16,'uint32':ctypes.c_uint32, 
+ 'uint64':ctypes.c_uint64, 'uint8':ctypes.c_uint8, 'ulong':ctypes.c_ulong,
+ 'ulonglong':ctypes.c_ulonglong,'ushort':ctypes.c_ushort, 'void_p':ctypes.c_void_p,
+ 'voidp':ctypes.c_voidp,'wchar':ctypes.c_wchar, 'wchar_p':ctypes.c_wchar_p} #char*对应python的byte类型
+```
+---
+6.示范： 
+
+1_0_c_add.pymain:
+```pymain
+use c;
+#include <stdio.h>
+long long add(long long a,long long b){
+    printf("%s","c: ");
+    printf("%lld",a+b);
+    printf("%s","\n");
+    return a+b;
+}
+py type(){line 3;
+    return [[c.add,['longlong','longlong'],'longlong']]
+}
+py main(){line 11;
+    import os
+    while True:
+        try:
+            a=int(input())
+            b=int(input())
+            c.add(a,b)
+            print("py:",a+b)
+        except:
+            os.sys.exit()           
+}
+```
+编译：
+```bash
+python3 pymain_1_0.py 1_0_c_add.pymain 1_0_c_add
+```
+运行：
+```bash
+python3 1_0_c_add/main.py
+```
+
+1_1_cpp_add.pymain:
+```pymain
+use cpp;
+#include <iostream>
+extern "C"{
+long long add(long long a,long long b){
+    std::cout << "cpp: " << a+b << std::endl;
+    return a+b;
+}
+}
+py type(){line 3;
+    return [[cpp.add,['longlong','longlong'],'longlong']]
+}
+py main(){line 11;
+    import os
+    while True:
+        try:
+            a=int(input())
+            b=int(input())
+            cpp.add(a,b)
+            print("py:",a+b)
+        except:
+            os.sys.exit()           
+}
+```
+编译：
+```bash
+python3 pymain_1_0.py 1_0_cpp_add.pymain 1_0_cpp_add
+```
+运行：
+```bash
+python3 1_0_cpp_add/main.py
+```
+
+1_0_py_hello.pymain:
+```pymain
+use c;
+py main(){line 3;
+    print("Hello world") 
+}
+```
+编译：
+```bash
+python3 pymain_1_0.py 1_0_py_hello.pymain 1_0_py_hello
+```
+运行：
+```bash
+python3 1_0_py_hello/main.py
+```
+</details>
+<details>
 <summary>pymain_1_1说明书</summary>
 
 ---
@@ -61,7 +213,7 @@ return [[第一个函数的类型],[第二个函数的类型],[第三个函数�
 ```
 一个函数的类型格式： 
 ```python
-[c/cpp.函数名字,[第一个参数的类型，第二个参数的类型……],结果的类型]或  
+[c/cpp.函数名字,[第一个参数的类型,第二个参数的类型……],结果的类型]或  
 [c/cpp.函数名字,None,结果的类型] 
 ``` 
 类型支持：
@@ -164,7 +316,7 @@ python3 1_1_cpp_add/main.py
 ```bash
 git clone https://github.com/huangziling0511/pymain.git
 ```
-测试：运行pymain_1_2.py,命令行参数:-v或-version就会输出版本号。
+测试：运行pymain_1_2.py,（命令行参数:-v或-version）就会输出版本号。
 ```bash
 python3 pymain_1_2.py -v
 python3 pymain_1_2.py -version
@@ -186,7 +338,7 @@ use c++; -------- python加c++模式
 use cpp; -------- python加c++模式,和上一行一样
 
 ---
-5.use py; ： 纯python模式，除了use py;这条声明都是纯python,但又自带的变量version = "1.2" 
+5.use py; ： 纯python模式，除了use py;这条声明都是纯python,但又有自带的变量version = "1.2" 
 
 use py;声明不可以和后面的代码挤在一起  
 use py;声明后面必须是换行符  
@@ -357,7 +509,7 @@ python3 1_2_c/main.py
 ```bash
 git clone https://github.com/huangziling0511/pymain.git
 ```
-测试：运行pymain_1_3.py,命令行参数:-v或-version就会输出版本号。
+测试：运行pymain_1_3.py（命令行参数:-v或-version）就会输出版本号。
 ```bash
 python3 pymain_1_3.py -v
 python3 pymain_1_3.py -version
