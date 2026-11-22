@@ -4,7 +4,7 @@
 ---
 1.下载：  
 ```bash
-git clone https://github.com/huangziling0511/pymain.git
+git clone https://github.com/0vl86ccd/pymain.git
 ```
 ---
 2.编译
@@ -157,7 +157,7 @@ python3 1_0_py_hello/main.py
 1.下载和测试：  
 下载： 
 ```bash
-git clone https://github.com/huangziling0511/pymain.git
+git clone https://github.com/0vl86ccd/pymain.git
 ```
 测试：直接运行pymain_1_1.py（不加命令行参数）就会输出版本号。
 ```bash
@@ -314,7 +314,7 @@ python3 1_1_cpp_add/main.py
 1.下载和测试：  
 下载： 
 ```bash
-git clone https://github.com/huangziling0511/pymain.git
+git clone https://github.com/0vl86ccd/pymain.git
 ```
 测试：运行pymain_1_2.py,（命令行参数:-v或-version）就会输出版本号。
 ```bash
@@ -507,7 +507,7 @@ python3 1_2_c/main.py
 1.下载和测试：  
 下载： 
 ```bash
-git clone https://github.com/huangziling0511/pymain.git
+git clone https://github.com/0vl86ccd/pymain.git
 ```
 测试：运行pymain_1_3.py（命令行参数:-v或-version）就会输出版本号。
 ```bash
