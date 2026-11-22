@@ -1,0 +1,15 @@
+system Mac;
+use c;
+#include <stdio.h>
+void out1(){
+    printf("Hello world!\n");
+}
+py type(){
+    return [[c.out1,[],"null"]]
+}
+py main(){
+    c.out1()
+    print('version:',version)
+    print('system:',system)
+    return 0
+}
